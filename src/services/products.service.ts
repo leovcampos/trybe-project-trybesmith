@@ -13,6 +13,12 @@ class ProductsServices {
 
     return { statusCode: 201, data: productCreated };
   }
+
+  async findAllService(): Promise<IServiceResp<IProduct[]>> {
+    const allProducts = await this.productsMapper.getAllMapper();
+
+    return { statusCode: 201, data: allProducts };
+  }
 }
 
 export default new ProductsServices();

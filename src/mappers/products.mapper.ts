@@ -13,6 +13,12 @@ class ProductsMapper {
 
     return product;
   }
+
+  async getAllMapper(): Promise<IProduct[]> {
+    const allProducts = await this.productsModel.findAll();
+
+    return allProducts;
+  }
 }
 
 export default new ProductsMapper();

@@ -20,6 +20,13 @@ class ProductsModel {
       ...product,
     };
   }
+
+  async findAll(): Promise<IProduct[]> {
+    const [result] = await this.connection.execute(
+      'SELECT * FROM Trybesmith.Products',
+    );
+    return result as IProduct[];
+  }
 }
 
 export default new ProductsModel();

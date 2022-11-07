@@ -16,6 +16,13 @@ class ProductsController {
 
     res.status(statusCode).json(data);
   };
+
+  findAllController = async (_req: Request, res: Response): Promise<void> => {
+    const { statusCode, data }: IServiceResp<IProduct[]> = await
+    this.productsService.findAllService();
+    
+    res.status(statusCode).json(data);
+  };
 }
 
 export default new ProductsController();
