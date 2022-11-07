@@ -17,7 +17,7 @@ class ProductsServices {
   async findAllService(): Promise<IServiceResp<IProduct[]>> {
     const allProducts = await this.productsMapper.getAllMapper();
 
-    return { statusCode: 201, data: allProducts };
+    return { statusCode: 200, data: allProducts };
   }
 }
 
