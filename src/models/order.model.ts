@@ -12,13 +12,13 @@ class OrderModel {
   async findAll(): Promise<IOrder[]> {
     const [result] = await this.connection.execute(
       `SELECT
-      or.id, or.userId, JSON_ARRAYAGG(pr.id) productsIds
-    FROM
-      Trybesmith.Orders or
-    INNER JOIN Trybesmith.Products pr ON
-      pr.orderId = or.id
-    GROUP BY 
-      or.id`,
+        pr.orderId AS id,
+        Ord.userId,
+        JSON_ARRAYAGG(pr.id) as productsIds
+      FROM Trybesmith.Products as pr        
+      INNER JOIN Trybesmith.Orders as Ord
+      ON pr.orderId = Ord.Id
+      GROUP BY pr.orderId`,
     );
 
     return result as IOrder[];
