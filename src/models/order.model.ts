@@ -13,11 +13,11 @@ class OrderModel {
     const [result] = await this.connection.execute(
       `SELECT
         pr.orderId AS id,
-        Ord.userId,
+        ord.userId,
         JSON_ARRAYAGG(pr.id) as productsIds
       FROM Trybesmith.Products as pr        
-      INNER JOIN Trybesmith.Orders as Ord
-      ON pr.orderId = Ord.Id
+      INNER JOIN Trybesmith.Orders as ord
+      ON pr.orderId = ord.Id
       GROUP BY pr.orderId`,
     );
 
