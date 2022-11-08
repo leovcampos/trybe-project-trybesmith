@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import ErrorHttp from './errorHttp';
 
-const validateLogin = (req: Request, res: Response, next: NextFunction) => {
+const validateLogin = (req: Request, _res: Response, next: NextFunction) => {
   const { username, password } = req.body;
   if (!username) {
     throw new ErrorHttp(400, '"username" is required');

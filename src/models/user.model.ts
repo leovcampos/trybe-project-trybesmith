@@ -19,12 +19,12 @@ class UserModel {
     return { id: insertId, ...user };
   }
 
-  async getByName(username: string): Promise<IUser> {
+  async getByName(username: string): Promise<IUser | undefined> {
     const [[user]] = await this.connection.execute<RowDataPacket[]>(
       'SELECT * FROM Trybesmith.Users WHERE username=?',
       [username],
     );
-    return user as IUser;
+    return user as IUser | undefined;
   }
 }
 

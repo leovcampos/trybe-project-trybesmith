@@ -13,7 +13,7 @@ class LoginService {
     this.jwt = jwt;
   }
 
-  private async getByName(username: string): Promise<IUser> {
+  private async getByName(username: string): Promise<IUser | undefined> {
     const user = await this.userMapper.getByNameMapper(username);
 
     return user;

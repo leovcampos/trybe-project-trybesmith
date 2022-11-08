@@ -14,7 +14,7 @@ class UserMapper {
     return newUser;
   }
 
-  async getByNameMapper(username: string): Promise<IUser> {
+  async getByNameMapper(username: string): Promise<IUser | undefined> {
     const userName = await this.userModel.getByName(username);
 
     return userName;
