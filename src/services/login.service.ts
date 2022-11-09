@@ -15,7 +15,6 @@ class LoginService {
 
   private async getByName(username: string): Promise<IUser | undefined> {
     const user = await this.userMapper.getByNameMapper(username);
-
     return user;
   }
 
@@ -25,11 +24,11 @@ class LoginService {
     if (!user || user.password !== password) {
       throw new ErrorHttp(401, 'Username or password invalid');
     }
-    const jwt = this.jwt.generate(user);
+    const token = this.jwt.generate(user);
 
     return {
       statusCode: 200,
-      data: { jwt },
+      data: { token },
     };
   }
 }
