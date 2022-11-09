@@ -19,6 +19,16 @@ class ProductsMapper {
 
     return allProducts;
   }
+
+  async getAllByIdMapper(ids: number[]): Promise<IProduct[]> {
+    const products = await this.productsModel.findById(ids);
+
+    return products;
+  }
+
+  async updateProductOrder(productsIds: number[], orderId: number): Promise<void> {
+    await this.productsModel.updateProductOrder(productsIds, orderId);
+  }
 }
 
 export default new ProductsMapper();

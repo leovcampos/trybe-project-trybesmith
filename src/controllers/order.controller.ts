@@ -14,6 +14,14 @@ class OrderController {
 
     res.status(statusCode).json(data);
   };
+
+  newOrder = async (req: Request, res: Response): Promise<void> => {
+    const { productsIds, user } = req.body;
+    const { statusCode, data }:IServiceResp<IOrder> = await
+    this.orderService.insertOrderService(user.id, productsIds);
+    
+    res.status(statusCode).json(data);
+  };
 }
 
 export default new OrderController();

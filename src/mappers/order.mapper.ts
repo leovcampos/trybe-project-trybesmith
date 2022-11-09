@@ -13,6 +13,12 @@ class OrderMapper {
 
     return orders;
   } 
+
+  async insertOrderMapper(userId: number): Promise<IOrder> {
+    const order = await this.orderModel.insert(userId);
+
+    return order;
+  }
 }
 
 export default new OrderMapper();
