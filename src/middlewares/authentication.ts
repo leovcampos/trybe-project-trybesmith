@@ -11,7 +11,9 @@ const authentication = (req: Request, res: Response, next: NextFunction) => {
 
   const decoded = jwtService.verifyToken(token);
   const user = decoded as IUser;
-  delete user.password;
+  // console.log(user);
+  // delete user.password;
+  
   req.body.user = user;
 
   next();

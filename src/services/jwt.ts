@@ -9,9 +9,9 @@ class Token {
     this.jwt = jwt;
   }
 
-  generate({ username, password, id }: IUser): string {
+  generate({ username, id }: IUser): string {
     const secret = process.env.JWT_SECRET as string || 'secret';
-    const jwtToken = this.jwt.sign({ username, password, id }, secret, {
+    const jwtToken = this.jwt.sign({ username, id }, secret, {
       expiresIn: '7d',
       algorithm: 'HS256',
     });
@@ -21,8 +21,8 @@ class Token {
   verifyToken(token: string): IUser {
     try {
       const secret = process.env.JWT_SECRET as string || 'secret';
-      const decoded = this.jwt.verify(token, secret) as { user: IUser };
-      return decoded.user;
+      const decoded = this.jwt.verify(token, secret) as IUser;
+      return decoded;
     } catch (e) {
       throw new ErrorHttp(401, 'Invalid token');
     }
